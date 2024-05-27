@@ -66,3 +66,8 @@ const generateToken = async (user, statusCode, res) => {
     .cookie("token", token, options)
     .json({success: true, token});
 };
+
+exports.logout = (req, res, next) => {
+  res.clearCookie("token");
+  res.status(200).json({success: true, message: "Logged out"});
+};
