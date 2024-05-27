@@ -20,3 +20,6 @@ Content-Type: application/json
 
 ### Log Out
 GET http://localhost:8000/api/logout
+
+### Single User
+GET http://localhost:8000/api/user/6654ce22497649caed109b83
