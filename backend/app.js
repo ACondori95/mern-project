@@ -5,6 +5,7 @@ dotenv.config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 // IMPORT ROUTES
 const routes = require("./routes");
@@ -18,6 +19,7 @@ mongoose
 // MIDDLEWARE
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // ROUTES MIDDLEWARE
 app.use("/", routes);
