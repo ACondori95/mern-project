@@ -44,7 +44,9 @@ exports.signin = async (req, res, next) => {
         .json({success: false, message: "Invalid credentials"});
     }
 
-    res.status(200).json({success: true, user});
+    const token = await user.jwtGenerateToken();
+
+    res.status(200).json({success: true, token});
   } catch (error) {
     console.log(error);
     return res
