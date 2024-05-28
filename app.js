@@ -3,6 +3,8 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 
 // IMPORT ROUTES
 const routes = require("./routes");
@@ -13,7 +15,11 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-// MIDDLEWARE
+// MIDDLEWARES
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+
+// ROUTES MIDDLEWARE
 app.use("/", routes);
 
 const port = process.env.PORT || 8000;
