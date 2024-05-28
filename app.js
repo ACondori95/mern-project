@@ -4,15 +4,17 @@ const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
 
+// IMPORT ROUTES
+const routes = require("./routes");
+
 // CONNECT DATABASE
 mongoose
   .connect(process.env.DATABASE)
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => {
-  res.send("Hi from Node js");
-});
+// MIDDLEWARE
+app.use("/", routes);
 
 const port = process.env.PORT || 8000;
 
