@@ -73,3 +73,13 @@ exports.logout = (req, res, next) => {
   res.clearCookie("token");
   res.status(200).json({success: true, message: "Logged out"});
 };
+
+exports.singleUser = async (req, res, next) => {
+  // #swagger.tags=['Users']
+  try {
+    const user = await User.findById(req.params.id);
+    res.status(200).json({success: true, user});
+  } catch (error) {
+    next(error);
+  }
+};
