@@ -7,26 +7,11 @@
   },
   "host": "localhost:8000",
   "basePath": "/",
-  "schemes": [
-    "https",
-    "http"
-  ],
+  "schemes": ["https", "http"],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/api/signup": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
