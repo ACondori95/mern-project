@@ -2,13 +2,13 @@ const User = require("../models/user.models");
 const ErrorResponse = require("../utils/errorResponse");
 
 exports.signup = async (req, res, next) => {
-  // #swagger.tags=['Users']
+  // #swagger.tags=['Auth']
   const {email} = req.body;
   const userExists = await User.findOne({email});
 
-  // if (userExists) {
-  //   return next(new ErrorResponse("Email already exists", 400));
-  // }
+  if (userExists) {
+    return next(new ErrorResponse("Email already exists", 400));
+  }
 
   try {
     const user = await User.create(req.body);
@@ -20,7 +20,7 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.signin = async (req, res, next) => {
-  // #swagger.tags=['Users']
+  // #swagger.tags=['Auth']
   try {
     const {email, password} = req.body;
     if (!email || !password) {
@@ -61,13 +61,19 @@ const generateToken = async (user, statusCode, res) => {
 };
 
 exports.logout = (req, res, next) => {
-  // #swagger.tags=['Users']
+  // #swagger.tags=['Auth']
   res.clearCookie("token");
   res.status(200).json({success: true, message: "Logged out"});
 };
 
+exports.userProfile = async (req, res, next) => {
+  // #swagger.tags=['Auth']
+  const user = await User.findById(req.user.id);
+  res.status(200).json({success: true, user});
+};
+
 exports.singleUser = async (req, res, next) => {
-  // #swagger.tags=['Users']
+  // #swagger.tags=['Auth']
   try {
     const user = await User.findById(req.params.id);
     res.status(200).json({success: true, user});

@@ -11,7 +11,7 @@
   "paths": {
     "/api/signup": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -36,7 +36,7 @@
     },
     "/api/signin": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -64,7 +64,18 @@
     },
     "/api/logout": {
       "get": {
-        "tags": ["Users"],
+        "tags": ["Auth"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/getme": {
+      "get": {
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "200": {
@@ -75,7 +86,7 @@
     },
     "/api/user/{id}": {
       "get": {
-        "tags": ["Users"],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
