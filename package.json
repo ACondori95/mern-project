@@ -1,0 +1,20 @@
+{
+  "name": "mern-project",
+  "version": "1.0.0",
+  "description": "This is a MERN project that will be used as a template for future projects",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.1"
+  }
+}
