@@ -153,6 +153,13 @@
       "get": {
         "tags": ["Products"],
         "description": "",
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"

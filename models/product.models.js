@@ -21,9 +21,6 @@ const productSchema = new mongoose.Schema(
       required: [true, "Product must have a price"],
       maxlength: 32,
     },
-    image: {
-      type: String,
-    },
     category: {
       type: ObjectId,
       ref: "Category",
