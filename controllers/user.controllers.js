@@ -1,4 +1,5 @@
 const User = require("../models/user.models");
+const ErrorResponse = require("../utils/errorResponse");
 
 exports.signup = async (req, res, next) => {
   // #swagger.tags=['Users']
@@ -6,9 +7,7 @@ exports.signup = async (req, res, next) => {
   const userExists = await User.findOne({email});
 
   if (userExists) {
-    return res
-      .status(400)
-      .json({success: false, message: "Email already exists"});
+    return next(new ErrorResponse("Email already exists", 400));
   }
   try {
     const user = await User.create(req.body);
@@ -24,33 +23,25 @@ exports.signin = async (req, res, next) => {
   try {
     const {email, password} = req.body;
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({success: false, message: "Email and password are required"});
+      return next(new ErrorResponse("Email and password are required", 400));
     }
 
     // check user email
     const user = await User.findOne({email});
     if (!user) {
-      return res
-        .status(400)
-        .json({success: false, message: "Invalid credentials"});
+      return next(new ErrorResponse("Invalid credentials", 400));
     }
 
     // verify user password
     const isModified = await user.comparePassword(password);
     if (!isModified) {
-      return res
-        .status(400)
-        .json({success: false, message: "Invalid credentials"});
+      return next(new ErrorResponse("Invalid credentials", 400));
     }
 
     generateToken(user, 200, res);
   } catch (error) {
     console.log(error);
-    return res
-      .status(400)
-      .json({success: false, message: "Cannot log in, check your credentials"});
+    next(new ErrorResponse("Cannot log in, check your credentials", 400));
   }
 };
 
@@ -80,6 +71,6 @@ exports.singleUser = async (req, res, next) => {
     const user = await User.findById(req.params.id);
     res.status(200).json({success: true, user});
   } catch (error) {
-    next(error);
+    next(new ErrorResponse(`User with id ${req.params.id} is not found`, 404));
   }
 };
