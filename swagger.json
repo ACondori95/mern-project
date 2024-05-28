@@ -64,6 +64,17 @@
           }
         }
       }
+    },
+    "/api/logout": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
