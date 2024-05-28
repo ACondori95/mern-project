@@ -3,16 +3,21 @@ const ErrorResponse = require("../utils/errorResponse");
 
 exports.signup = async (req, res, next) => {
   // #swagger.tags=['Auth']
-  const {email} = req.body;
-  const userExists = await User.findOne({email});
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    role: req.body.role,
+  };
+  const userExists = await User.findOne(user.email);
 
   if (userExists) {
     return next(new ErrorResponse("Email already exists", 400));
   }
 
   try {
-    const user = await User.create(req.body);
-    res.status(201).json({success: true, user});
+    const response = await User.create(user);
+    res.status(201).json({success: true, response});
   } catch (error) {
     console.log(error);
     next(error);
