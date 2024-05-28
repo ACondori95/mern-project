@@ -18,3 +18,14 @@ exports.createProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.displayProduct = async (req, res, next) => {
+  // #swagger.tags=['Products']
+  try {
+    const products = await Product.find().populate("category");
+    res.status(201).json({success: true, products});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};

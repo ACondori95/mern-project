@@ -149,6 +149,17 @@
         }
       }
     },
+    "/api/products/all": {
+      "get": {
+        "tags": ["Products"],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
     "/api/category/create": {
       "post": {
         "tags": ["Categories"],
