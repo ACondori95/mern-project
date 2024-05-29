@@ -2,10 +2,11 @@ const swaggerAutogen = require("swagger-autogen");
 
 const doc = {
   info: {
-    title: "Users API",
-    description: "User API",
+    title: "Store API",
+    description:
+      "This is an API to be used by stores, to keep track of products, clients, and providers",
   },
-  host: "localhost:8000",
+  host: "mern-project-o7f1.onrender.com",
   schemes: ["https", "http"],
 };
 
