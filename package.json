@@ -2,7 +2,7 @@
   "name": "mern-project",
   "version": "1.0.0",
   "description": "This is a MERN project that will be used as a template for future projects",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "nodemon app.js",
