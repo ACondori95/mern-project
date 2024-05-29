@@ -7,7 +7,7 @@
   },
   "host": "mern-project-o7f1.onrender.com",
   "basePath": "/",
-  "schemes": ["https", "http"],
+  "schemes": ["https"],
   "paths": {
     "/api/signup": {
       "post": {
