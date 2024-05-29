@@ -21,6 +21,11 @@ const productSchema = new mongoose.Schema(
       required: [true, "Product must have a price"],
       maxlength: 32,
     },
+    provider: {
+      type: ObjectId,
+      ref: "Provider",
+      required: [true, "You must choose a provider"],
+    },
     category: {
       type: ObjectId,
       ref: "Category",

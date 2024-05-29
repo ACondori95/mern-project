@@ -1,18 +1,11 @@
 const Product = require("../models/product.models");
-const ErrorResponse = require("../utils/errorResponse");
 
 exports.createProduct = async (req, res, next) => {
   // #swagger.tags=['Products']
-  const product = {
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    image: req.body.image,
-    category: req.body.category,
-  };
+  const {name, description, price, category} = req.body;
   try {
-    const response = await Product.create(product);
-    res.status(201).json({success: true, response});
+    const product = await Product.create({name, description, price, category});
+    res.status(201).json({success: true, product});
   } catch (error) {
     console.log(error);
     next(error);
@@ -32,17 +25,64 @@ exports.displayProduct = async (req, res, next) => {
       .skip(pageSize * (page - 1))
       .limit(pageSize);
 
-    res
-      .status(201)
-      .json({
-        success: true,
-        products,
-        page,
-        pages: Math.ceil(count / pageSize),
-        count,
-      });
+    res.status(201).json({
+      success: true,
+      products,
+      page,
+      pages: Math.ceil(count / pageSize),
+      count,
+    });
   } catch (error) {
     console.log(error);
     next(error);
+  }
+};
+
+exports.updateProduct = async (req, res, next) => {
+  // #swagger.tags=['Products']
+  try {
+    // build the data object
+    const data = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+    };
+
+    const productUpdate = await Product.findOneAndUpdate(
+      {_id: req.params.id},
+      data,
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json({success: true, productUpdate});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.deleteProduct = async (req, res, next) => {
+  // #swagger.tags=['Products']
+  try {
+    const product = await Product.findByIdAndDelete({_id: req.params.id});
+    res.status(201).json({success: true, message: "Product deleted"});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.productCategory = async (req, res, next) => {
+  // #swagger.tags=['Products']
+  try {
+    const cat = await Product.find()
+      .populate("category", "name")
+      .distinct("category");
+    res.status(201).json({success: true, cat});
+  } catch (error) {
+    console.log(error);
   }
 };
