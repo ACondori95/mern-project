@@ -7,7 +7,7 @@
   },
   "host": "mern-project-o7f1.onrender.com",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": ["https", "http"],
   "paths": {
     "/api/signup": {
       "post": {
@@ -134,6 +134,9 @@
                 },
                 "category": {
                   "example": "any"
+                },
+                "provider": {
+                  "example": "any"
                 }
               }
             }
@@ -191,6 +194,9 @@
                   "example": "any"
                 },
                 "category": {
+                  "example": "any"
+                },
+                "provider": {
                   "example": "any"
                 }
               }
