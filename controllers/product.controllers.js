@@ -8,8 +8,8 @@ exports.createProduct = async (req, res, next) => {
       name,
       description,
       price,
-      category,
       provider,
+      category,
     });
     res.status(201).json({success: true, product});
   } catch (error) {
@@ -52,8 +52,8 @@ exports.updateProduct = async (req, res, next) => {
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      category: req.body.category,
       provider: req.body.provider,
+      category: req.body.category,
     };
 
     const productUpdate = await Product.findOneAndUpdate(
