@@ -68,8 +68,12 @@ exports.logout = (req, res, next) => {
 
 exports.userProfile = async (req, res, next) => {
   // #swagger.tags=['Auth']
-  const user = await User.findById(req.user.id);
-  res.status(200).json({success: true, user});
+  try {
+    const user = await User.findById(req.user.id);
+    res.status(200).json({success: true, user});
+  } catch (error) {
+    next(error);
+  }
 };
 
 exports.singleUser = async (req, res, next) => {
