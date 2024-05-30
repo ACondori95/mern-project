@@ -2,7 +2,7 @@ const Product = require("../models/product.models");
 
 exports.createProduct = async (req, res, next) => {
   // #swagger.tags=['Products']
-  const {name, description, price, category, provider} = req.body;
+  const {name, description, price, provider, category} = req.body;
   try {
     const product = await Product.create({
       name,
