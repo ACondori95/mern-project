@@ -2,9 +2,15 @@ const Product = require("../models/product.models");
 
 exports.createProduct = async (req, res, next) => {
   // #swagger.tags=['Products']
-  const {name, description, price, category} = req.body;
+  const {name, description, price, category, provider} = req.body;
   try {
-    const product = await Product.create({name, description, price, category});
+    const product = await Product.create({
+      name,
+      description,
+      price,
+      category,
+      provider,
+    });
     res.status(201).json({success: true, product});
   } catch (error) {
     console.log(error);
@@ -47,6 +53,7 @@ exports.updateProduct = async (req, res, next) => {
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
+      provider: req.body.provider,
     };
 
     const productUpdate = await Product.findOneAndUpdate(
