@@ -27,7 +27,7 @@ exports.displayProduct = async (req, res, next) => {
 
   try {
     const products = await Product.find()
-      .populate("provider", "category")
+      .populate("category provider")
       .skip(pageSize * (page - 1))
       .limit(pageSize);
 

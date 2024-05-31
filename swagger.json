@@ -132,10 +132,10 @@
                 "price": {
                   "example": "any"
                 },
-                "category": {
+                "provider": {
                   "example": "any"
                 },
-                "provider": {
+                "category": {
                   "example": "any"
                 }
               }
